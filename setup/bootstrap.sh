@@ -20,3 +20,5 @@ sudo ln -sfn $BASEDIR/shell/bash_profile $HOME/.bash_profile
 sudo ln -sfn $BASEDIR/shell/bash_aliases $HOME/.bash_aliases
 sudo ln -sfn $BASEDIR/shell/bash_logout $HOME/.bash_logout
 
+# Reload bashrc
+source $HOME/.bashrc

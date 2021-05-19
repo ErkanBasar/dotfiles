@@ -13,6 +13,7 @@ alias deac='deactivate'
 alias gaa='git add -A :/'
 alias gcek='git checkout'
 alias gsta='git status'
+alias gbra='git branch'
 
 # tmux control
 alias tn='tmux new -t'
@@ -25,7 +26,7 @@ alias ..=cd..
 alias cddot='cd $HOME/.dotfiles'
 
 # Django
-alias pmr='python manage.py runserver'
+alias pmr='python3 manage.py runserver'
 
 # ls and ls color
 alias ll='ls -l'
@@ -38,7 +39,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
 
 # Misc.
 alias temp='vcgencmd measure_temp'
