@@ -1,0 +1,9 @@
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[core]
+	editor = nano
+[push]
+	default = simple
+

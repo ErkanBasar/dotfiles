@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Python
+#alias python='python3.8'
+#alias python3='python3.8'
+
+# Python Environment Control
+alias venv='python3 -m venv .env'
+alias src='. .env/bin/activate'
+alias deac='deactivate'
+
+# Git aliases
+alias gaa='git add -A :/'
+alias gcek='git checkout'
+alias gsta='git status'
+
+# tmux control
+alias tn='tmux new -t'
+alias ta='tmux a -t'
+alias tls='tmux ls'
+
+# Folder Navigation;
+alias cd..='cd ..'
+alias ..=cd..
+alias cddot='cd $HOME/.dotfiles'
+
+# Django
+alias pmr='python manage.py runserver'
+
+# ls and ls color
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lah'
+if [ -x /usr/bin/dircolors ]; then
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+# Misc.
+alias temp='vcgencmd measure_temp'
+alias please='sudo'

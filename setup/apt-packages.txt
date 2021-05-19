@@ -1,0 +1,9 @@
+curl
+wget
+git
+tmux
+screenfetch
+tree
+htop
+watch
+
