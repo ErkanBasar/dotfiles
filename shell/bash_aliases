@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Python
-alias python='python3.8'
-alias python3='python3.8'
+#alias python='python3.8'
+#alias python3='python3.8'
 
 # Environment Control
-alias venv='virtualenv -p python3 .env'
+alias venv='python3 -m venv .env'
 alias src='. .env/bin/activate'
 alias deac='deactivate'
 
@@ -46,15 +46,15 @@ alias cd..='cd ..'
 alias ..=cd..
 alias cddot='cd $HOME/.dotfiles'
 alias cdwork='cd $HOME/workspaces/'
-alias cdsim='cd $HOME/workspaces/sim/'
-alias cderk='cd $HOME/workspaces/erk/'
-alias cdse='cd $HOME/workspaces/simerk/'
-alias cdbas='cd $HOME/workspaces/simerk/basar-dev/'
+alias cdbas='cd $HOME/workspaces/basar-dev/'
 alias cdflo='cd $HOME/workspaces/FloodTags/'
+alias cdphd='cd $HOME/workspaces/PhD/'
 alias cddash='cd $HOME/workspaces/FloodTags/Data_Distribution/dashboard/'
 alias cdneat='cd $HOME/workspaces/FloodTags/Enrichments/enrichment-neat/'
 
+# Extras
 alias please='sudo'
+alias hist='history | grep'
 
 # Django
 alias pmr='python manage.py runserver'

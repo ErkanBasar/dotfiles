@@ -9,6 +9,8 @@ openjdk-8-jre-headless
 openvpn
 openssh-server
 python3-pip
+python3-dev
+python-is-python3
 virtualenv
 redshift-gtk
 screen
@@ -21,6 +23,8 @@ wget
 htop
 watch
 timeshift
+gimp
 vlc
 steam
 spotify-client
+python-is-python3

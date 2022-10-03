@@ -10,6 +10,8 @@ List of the packages considered to be added to packages.list
 -   GRUB customizer
 -   Node.js, npm
 -   CUDA & cuDNN ?
+-   Variety: ~/.config/variety
+-   Guake pref?
 
 Remove packages
 ---------------
