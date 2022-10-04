@@ -46,9 +46,10 @@ Terminal=false
 Type=Application
 Categories=Utility;
 StartupNotify=true
-X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-enabled=false
 NoDisplay=false
-Hidden=false
+Hidden=true
 Name[en_US]=Redshift
 Comment[en_US]=Color temperature adjustment tool
 X-GNOME-Autostart-Delay=5
+

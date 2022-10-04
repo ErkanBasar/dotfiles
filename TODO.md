@@ -10,6 +10,7 @@ List of the packages considered to be added to packages.list
 -   GRUB customizer
 -   Node.js, npm
 -   CUDA & cuDNN ?
+-   GIMP
 
 Remove packages
 ---------------

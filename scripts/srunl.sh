@@ -70,6 +70,9 @@ elif [ $1 == "-a" ]; then
 elif [ $1 == "-f" ]; then
   SERVER="fluttershy"
 
+elif [ $1 == "-l" ]; then
+  SERVER="lightning"
+
 else
   while getopts ":s:p:" opt; do
     case "$opt" in
