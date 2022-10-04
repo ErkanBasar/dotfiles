@@ -58,37 +58,43 @@ for package in $SYSTEMPKGS; do
 
 done
 
-DEBPATHS=$HOME/Downloads/deb_packages
 
-if [ ! -d $DEBPATHS ]; then
-  mkdir $DEBPATHS
+if [ -f "$DEBPKGS" ]; then
+
+  DEBPATHS=$HOME/Downloads/deb_packages
+  if [ ! -d $DEBPATHS ]; then
+    mkdir $DEBPATHS
+  fi
+
+  printlog "Downloading .deb packages into $DEBPATHS/"
+  while IFS=' ' read -r url name
+  do
+      wget $url -O $DEBPATHS/$name || printerror "Unable to download $name"
+  done < "$DEBPKGS"
+
+  printlog "Installing downloaded .deb packages under $DEBPATHS/"
+  sudo dpkg -i $DEBPATHS/*.deb || printerror "Unable to install dowloaded .deb packages"
+
+  printlog "Installing the missing dependencies (if there is any)"
+  sudo apt install -f
+
+  echo
+  while true; do
+    read -p "Do you want to remove the downloaded .deb packages? [Y/n]: " yn
+    case $yn in
+      [Nn]* ) break;;
+      * ) rm -rf $DEBPATHS; break;;
+    esac
+  done
+
 fi
 
-printlog "Downloading .deb packages into $DEBPATHS/"
-while IFS=' ' read -r url name
-do
-    wget $url -O $DEBPATHS/$name || printerror "Unable to download $name"
-done < "$DEBPKGS"
-
-printlog "Installing downloaded .deb packages under $DEBPATHS/"
-sudo dpkg -i $DEBPATHS/*.deb || printerror "Unable to install dowloaded .deb packages"
-
-printlog "Installing the missing dependencies (if there is any)"
-sudo apt install -f
-
-echo
-while true; do
-  read -p "Do you want to remove the downloaded .deb packages? [Y/n]: " yn
-  case $yn in
-    [Nn]* ) break;;
-    * ) rm -rf $DEBPATHS; break;;
-  esac
-done
 
 printlog "Updating & Upgrading & Autoremoving"
 sudo apt update
 sudo apt upgrade
 sudo apt autoremove
+sudo apt clean
 
 printlog "Bootstrapping"
 bash setup/bootstrap.sh
@@ -99,6 +105,7 @@ echo "Using version $($PYTHON --version 2>&1)"
 PKGS_PATH=$BASEDIR/python-env/python-packages.txt
 echo "Installing Python packages given in $PKGS_PATH"
 echo
+# TODO: Replace virtualenv
 virtualenv --system-site-packages --python=$PYTHON $HOME/.env
 # shellcheck source=$HOME/.env/bin/activate
 source $HOME/.env/bin/activate

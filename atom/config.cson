@@ -1,14 +1,13 @@
 "*":
   core:
-    telemetryConsent: "limited"
-    themes: [
-      "one-light-ui"
-      "one-light-syntax"
+    autoHideMenuBar: true
+    disabledPackages: [
+      "linter-pylint"
     ]
+    telemetryConsent: "limited"
   "dash-ui":
     themeColor: "White"
   editor:
-    fontSize: 15
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true
@@ -24,6 +23,7 @@
   "linter-stylelint":
     disableWhenNoConfig: false
     showIgnored: true
+    useStandard: true
   "linter-ui-default":
     panelHeight: 451
   "markdown-preview":
