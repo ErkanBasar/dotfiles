@@ -4,14 +4,15 @@
 alias venv='python3 -m venv .env'
 alias src='. .env/bin/activate'
 alias deac='deactivate'
+alias pipup='pip install --upgrade pip'
 
 # Git aliases
 alias gadd='git add'
-alias gaa='git add -A :/'
 alias gcom='git commit'
 alias gcam='git commit -am'
 alias gcek='git checkout'
 alias gsta='git status'
+alias gdif='git diff'
 alias gbra='git branch'
 alias gpush='git push'
 alias gpus=gpush
@@ -42,11 +43,10 @@ alias cd..='cd ..'
 alias ..=cd..
 alias cddot='cd $HOME/.dotfiles'
 alias cdwork='cd $HOME/workspaces/'
-alias cdbas='cd $HOME/workspaces/basar-dev/'
-alias cdflo='cd $HOME/workspaces/FloodTags/'
 alias cdphd='cd $HOME/workspaces/PhD/'
-alias cddash='cd $HOME/workspaces/FloodTags/Data_Distribution/dashboard/'
-alias cdneat='cd $HOME/workspaces/FloodTags/Enrichments/enrichment-neat/'
+
+# Latex
+alias overpull='xclip -sel c < $HOME/.overleaf.au | gpull'
 
 # Extras
 alias please='sudo'
@@ -73,12 +73,5 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Start VPN connections in a screen;
-alias ruvpn='screen -S ruvpn bash -c "sudo openvpn $HOME/.dotfiles/vpn/openvpn-science-ru-nl.ovpn"'
-alias ftvpn='screen -S ftvpn bash -c "sudo openvpn $HOME/.dotfiles/vpn/openvpn-floodtags-basar.ovpn"'
-alias sruvpn='screen -S sruvpn bash -c "sudo openvpn $HOME/.dotfiles/vpn/s-openvpn-science-ru-nl.ovpn"'
-alias sftvpn='screen -S ftvpn bash -c "sudo openvpn $HOME/.dotfiles/vpn/openvpn-credentials-ekiz.ovpn"'
-alias flovpn=ftvpn
-
-# Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
+# Add an "alert" alias for long running commands. Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

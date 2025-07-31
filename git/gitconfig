@@ -1,11 +1,14 @@
-[filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
 [core]
 	editor = nano
 [push]
 	default = simple
 [user]
 	email = erkan@basar.dev
-	name = Erkan
+	name = Erkan Basar
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

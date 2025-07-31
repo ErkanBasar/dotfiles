@@ -28,3 +28,4 @@ vlc
 steam
 spotify-client
 python-is-python3
+xclip
