@@ -26,26 +26,17 @@ for package in $SYSTEMPKGS; do
 
   if ! which $package > /dev/null; then
 
-    if [[ $package = "tlp" ]]; then
-      sudo apt remove laptop-mode-tools
-      sudo add-apt-repository -y ppa:linrunner/tlp
-      sudo apt update
-
     elif [[ $package = "spotify-client" ]]; then
       # Do not install spotify from the Software manager
-      # The public key changes each time, consider checking the website
+      # The public key changes in time, consider checking the website
       # source: https://www.spotify.com/download/linux/
-      curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
-      echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+      curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+      echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
       sudo apt update
 
-    elif [[  $package = "timeshift" ]]; then
-      sudo add-apt-repository -y ppa:teejee2008/ppa
-      sudo apt update
-
-    elif [[  $package = "heroku" ]]; then
-      curl https://cli-assets.heroku.com/install.sh | sudo sh
-      continue
+    elif [[  $package = "eduvpn-client" ]]; then
+      wget -O- https://app.eduvpn.org/linux/v4/deb/app+linux@eduvpn.org.asc | gpg --dearmor | sudo tee /usr/share/keyrings/eduvpn-v4.gpg >/dev/null
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/eduvpn-v4.gpg] https://app.eduvpn.org/linux/v4/deb/ noble main" | sudo tee /etc/apt/sources.list.d/eduvpn-v4.list
 
     fi
 
@@ -89,7 +80,6 @@ if [ -f "$DEBPKGS" ]; then
 
 fi
 
-
 printlog "Updating & Upgrading & Autoremoving"
 sudo apt update
 sudo apt upgrade
@@ -104,10 +94,7 @@ PYTHON=$(which python3)
 echo "Using version $($PYTHON --version 2>&1)"
 PKGS_PATH=$BASEDIR/python-env/python-packages.txt
 echo "Installing Python packages given in $PKGS_PATH"
-echo
-# TODO: Replace virtualenv
-virtualenv --system-site-packages --python=$PYTHON $HOME/.env
-# shellcheck source=$HOME/.env/bin/activate
+$PYTHON -m venv $HOME/.env || printerror "Failed to create venv"
 source $HOME/.env/bin/activate
 pip install --upgrade pip
 pip install -r $PKGS_PATH

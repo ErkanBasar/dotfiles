@@ -23,7 +23,6 @@ sudo ln -sfn $BASEDIR/shell/bash_logout $HOME/.bash_logout
 # Custom Scripts
 sudo ln -sfn $BASEDIR/scripts/tunnel.sh /usr/bin/tunnel
 sudo ln -sfn $BASEDIR/scripts/srunl.sh /usr/bin/srunl
-sudo ln -sfn $BASEDIR/scripts/chats.sh /usr/bin/chats
 sudo ln -sfn $BASEDIR/scripts/gu.sh /usr/bin/gu
 
 # Icons
@@ -33,28 +32,8 @@ sudo ln -sfn $BASEDIR/icons/ $HOME/.icons
 # Redshift
 sudo ln -sfn $BASEDIR/redshift/redshift.conf $HOME/.config/redshift.conf
 
-# Atom
-sudo ln -sfn $BASEDIR/atom/ $HOME/.atom
-bash $BASEDIR/scripts/atompkg.sh -i
-
 # Autostart
 sudo rm -rf $HOME/.config/autostart/
 sudo ln -sfn $BASEDIR/autostart/ $HOME/.config/autostart
 
-# Pidgin
-# sudo ln -sfn $BASEDIR/pidgin-purple/ $HOME/.purple
-
-printlog "Creating OpenVPN scripts"
-if [ ! -d $BASEDIR/vpn ]; then
-  mkdir $BASEDIR/vpn
-fi
-OVPNFILE=$BASEDIR/vpn/openvpn-science-ru-nl.ovpn
-LOGINCONF=$BASEDIR/vpn/openvpn-science-ru-nl.conf
-wget https://gitlab.science.ru.nl/cncz/openvpn/raw/master/openvpn-science.ovpn -O $OVPNFILE
-if [ ! -f $LOGINCONF ]; then
-  echo "< username >@science.ru.nl" >> $LOGINCONF
-fi
-if [ -f $LOGINCONF ]; then
-  echo "" >> $OVPNFILE
-  echo "auth-user-pass $LOGINCONF" >> $OVPNFILE
-fi
+sudo tlp start

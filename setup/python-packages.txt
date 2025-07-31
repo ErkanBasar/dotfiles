@@ -1,0 +1,8 @@
+requests
+json-lines
+jupyter
+jupyterlab
+matplotlib
+numpy
+pandas
+pylint
