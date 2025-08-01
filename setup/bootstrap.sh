@@ -1,5 +1,12 @@
 #!/bin/bash
 
+printerror () {
+    echo "======================== ERROR ========================" >&2
+    echo "$1" >&2
+    echo "=======================================================" >&2
+}
+
+
 printlog () {
     echo
     echo "---------------------------------------------------------------------------" >&2
@@ -36,4 +43,7 @@ sudo ln -sfn $BASEDIR/redshift/redshift.conf $HOME/.config/redshift.conf
 sudo rm -rf $HOME/.config/autostart/
 sudo ln -sfn $BASEDIR/autostart/ $HOME/.config/autostart
 
-sudo tlp start
+# TLP: power management tool
+if command -v tlp >/dev/null 2>&1; then
+  sudo tlp start || printerror "Unable to start TLP"
+fi
