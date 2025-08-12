@@ -19,6 +19,7 @@ redshift-gtk
 screen
 screenfetch
 shellcheck
+signal-desktop
 spotify-client
 steam
 timeshift

@@ -39,6 +39,12 @@ for package in $SYSTEMPKGS; do
       wget -O- https://app.eduvpn.org/linux/v4/deb/app+linux@eduvpn.org.asc | gpg --dearmor | sudo tee /usr/share/keyrings/eduvpn-v4.gpg >/dev/null
       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/eduvpn-v4.gpg] https://app.eduvpn.org/linux/v4/deb/ noble main" | sudo tee /etc/apt/sources.list.d/eduvpn-v4.list
       sudo apt update
+    elif [[  $package = "signal-desktop" ]]; then
+      wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+      cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+      echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+        sudo tee /etc/apt/sources.list.d/signal-xenial.list
+      sudo apt update
     fi
     sudo apt install -y "$package" || printerror "Unable to install $package"
   else

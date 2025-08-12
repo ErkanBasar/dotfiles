@@ -44,6 +44,7 @@ alias ..=cd..
 alias cddot='cd $HOME/.dotfiles'
 alias cdwork='cd $HOME/Workspaces/'
 alias cdwur='cd $HOME/Workspaces/WUR/'
+alias cdpap='cd $HOME/Workspaces/Pap/'
 
 # Latex
 alias overpull='xclip -sel c < $HOME/.overleaf.au | gpull'
