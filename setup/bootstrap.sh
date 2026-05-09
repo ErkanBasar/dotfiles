@@ -28,6 +28,7 @@ sudo ln -sfn $BASEDIR/shell/bash_aliases $HOME/.bash_aliases
 sudo ln -sfn $BASEDIR/shell/bash_logout $HOME/.bash_logout
 
 # Custom Scripts
+sudo ln -sfn $BASEDIR/scripts/immich.sh /usr/bin/immich
 sudo ln -sfn $BASEDIR/scripts/tunnel.sh /usr/bin/tunnel
 sudo ln -sfn $BASEDIR/scripts/srunl.sh /usr/bin/srunl
 sudo ln -sfn $BASEDIR/scripts/gu.sh /usr/bin/gu
