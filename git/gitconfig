@@ -1,14 +1,8 @@
 [core]
-	editor = nano
-[push]
-	default = simple
+  editor = nano
 [user]
-	email = erkan@basar.dev
-	name = Erkan Basar
+  email = erkan@basar.dev
+  name = Erkan Basar
+  signingkey = 3085EFA4BAF4B45442CEF8D683C5DEFD8C3FA49C
 [commit]
-	gpgsign = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  gpgsign = true

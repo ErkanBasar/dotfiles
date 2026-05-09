@@ -8,8 +8,8 @@ alias pipup='pip install --upgrade pip'
 
 # Git aliases
 alias gadd='git add'
-alias gcom='git commit'
-alias gcam='git commit -am'
+alias gcom='git commit -m'
+alias gcam=gcom
 alias gcek='git checkout'
 alias gsta='git status'
 alias gdif='git diff'
@@ -28,7 +28,6 @@ alias scr='screen'
 alias scrs='screen -S'
 alias scrr='screen -r'
 alias scrls='screen -ls'
-alias scrl=scrls
 killscr () {
   screen -X -S $1 quit
 }
@@ -42,16 +41,13 @@ alias tls='tmux ls'
 alias cd..='cd ..'
 alias ..=cd..
 alias cddot='cd $HOME/.dotfiles'
-alias cdwork='cd $HOME/Workspaces/'
-alias cdwur='cd $HOME/Workspaces/WUR/'
-alias cdpap='cd $HOME/Workspaces/Pap/'
+alias cdwork='cd $HOME/Workspaces'
+
+# History
+alias hist='history | grep'
 
 # Latex
 alias overpull='xclip -sel c < $HOME/.overleaf.au | gpull'
-
-# Extras
-alias please='sudo'
-alias hist='history | grep'
 
 # Django
 alias pmr='python manage.py runserver'
@@ -67,7 +63,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lah'
 if [ -x /usr/bin/dircolors ]; then
-    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -76,3 +72,6 @@ fi
 
 # Add an "alert" alias for long running commands. Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Extras
+alias please='sudo'

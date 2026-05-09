@@ -36,9 +36,6 @@ sudo ln -sfn $BASEDIR/scripts/gu.sh /usr/bin/gu
 sudo rm -r $HOME/.icons
 sudo ln -sfn $BASEDIR/icons/ $HOME/.icons
 
-# Redshift
-sudo ln -sfn $BASEDIR/redshift/redshift.conf $HOME/.config/redshift.conf
-
 # Autostart
 sudo rm -rf $HOME/.config/autostart/
 sudo ln -sfn $BASEDIR/autostart/ $HOME/.config/autostart

@@ -1,16 +1,16 @@
 #!/bin/bash
 
 printerror () {
-    echo "======================== ERROR ========================" >&2
-    echo "$1" >&2
-    echo "=======================================================" >&2
+  echo "======================== ERROR ========================" >&2
+  echo "$1" >&2
+  echo "=======================================================" >&2
 }
 
 printlog () {
-    echo
-    echo "---------------------------------------------------------------------------" >&2
-    echo "$1"
-    echo "---------------------------------------------------------------------------" >&2
+  echo
+  echo "---------------------------------------------------------------------------" >&2
+  echo "$1"
+  echo "---------------------------------------------------------------------------" >&2
 }
 
 printlog "Updating Aptitude package manager..."
@@ -29,21 +29,16 @@ for package in $SYSTEMPKGS; do
   printlog "Installing $package"
   if ! which "$package" > /dev/null; then
     if [[ $package = "spotify-client" ]]; then
-      # Do not install spotify from the Software manager
-      # The public key changes in time, consider checking the website
+      # Do not install spotify from the Software manager. The public key changes in time, consider checking the website
       # source: https://www.spotify.com/download/linux/
-      curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+      curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
       echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-      sudo apt update
-    elif [[  $package = "eduvpn-client" ]]; then
-      wget -O- https://app.eduvpn.org/linux/v4/deb/app+linux@eduvpn.org.asc | gpg --dearmor | sudo tee /usr/share/keyrings/eduvpn-v4.gpg >/dev/null
-      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/eduvpn-v4.gpg] https://app.eduvpn.org/linux/v4/deb/ noble main" | sudo tee /etc/apt/sources.list.d/eduvpn-v4.list
       sudo apt update
     elif [[  $package = "signal-desktop" ]]; then
       wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
       cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-      echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-        sudo tee /etc/apt/sources.list.d/signal-xenial.list
+      wget -O signal-desktop.sources https://updates.signal.org/static/desktop/apt/signal-desktop.sources;
+      cat signal-desktop.sources | sudo tee /etc/apt/sources.list.d/signal-desktop.sources > /dev/null
       sudo apt update
     fi
     sudo apt install -y "$package" || printerror "Unable to install $package"
@@ -100,7 +95,7 @@ else
   printerror "Venv does not exist"
 fi
 
-printlog "Installing PyCharm: After installation, the program will launch automatically. Select 'Create a Desktop Entry'."
+printlog "Installing PyCharm: After installation, the program will launch automatically. Select 'Tools > Create a Desktop Entry'."
 PYCHARM_URL=$(curl -s 'https://data.services.jetbrains.com/products/releases?code=PCP&latest=true&type=release' | grep -oP '"linux":\s*{\s*"link":\s*"\K[^"]+')
 PYCHARM_FOLDER=$(basename "$PYCHARM_URL" .tar.gz)
 wget -c -O /tmp/pycharm.tar.gz "$PYCHARM_URL"

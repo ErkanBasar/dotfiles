@@ -1,3 +1,4 @@
 https://download.pulsar-edit.dev/?os=linux&type=linux_deb pulsar.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb google-chrome.deb
 https://discord.com/api/download?platform=linux&format=deb discord.deb
+https://slack.com/downloads/instructions/linux?ddl=1&build=deb slack-desktop.deb
